@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090B09" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem("linksnap-theme"); } catch (_) {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", theme === "light" ? "#f4f7f3" : "#090B09");
+      })();
+    </script>
+
+    <title>LinkSnap — Turn Any Link Into a Story Worth Sharing</title>
+    <meta
+      name="description"
+      content="Transform ordinary URLs into customizable, beautiful story cards designed for Instagram Stories, WhatsApp Status, and Facebook Stories."
+    />
+    <meta
+      name="keywords"
+      content="LinkSnap, URL to story card, link preview generator, Instagram story link card, WhatsApp status card, social story cards, mobile app"
+    />
+    <meta name="author" content="LinkSnap" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon & App Icon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/brand/icon.png" />
+
+    <!-- Open Graph / Social Sharing Metadata -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LinkSnap" />
+    <meta
+      property="og:title"
+      content="LinkSnap — Turn Any Link Into a Story Worth Sharing"
+    />
+    <meta
+      property="og:description"
+      content="Transform ordinary URLs into beautiful, customizable story cards designed for sharing across Instagram, WhatsApp, and Facebook."
+    />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="LinkSnap — Turn Any Link Into a Story Worth Sharing"
+    />
+
+    <!-- Twitter / X Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="LinkSnap — Turn Any Link Into a Story Worth Sharing"
+    />
+    <meta
+      name="twitter:description"
+      content="Transform ordinary URLs into beautiful, customizable story cards designed for sharing."
+    />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data (SoftwareApplication — strictly verified facts) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "LinkSnap",
+        "operatingSystem": "iOS, Android",
+        "applicationCategory": "DesignApplication",
+        "description": "Mobile app that transforms URLs into customizable, social-story-ready visual cards.",
+        "url": "https://github.com/7kajal/link-snap",
+        "license": "https://github.com/7kajal/link-snap/blob/main/LICENSE"
+      }
+    </script>
+  </head>
+  <body class="bg-[#090B09] text-white antialiased selection:bg-emerald-500/30 selection:text-emerald-200 overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
