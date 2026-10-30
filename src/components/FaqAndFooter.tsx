@@ -1,19 +1,13 @@
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Minus, Plus } from "lucide-react";
-import { useState } from "react";
 import { Reveal } from "@/components/MotionPrimitives";
-import {
-  CREATOR_URL,
-  DOCS_URL,
-  FAQ_ITEMS,
-  ISSUES_URL,
-  LICENSE_URL,
-  REPO_URL,
-} from "@/data/productData";
+import { FAQ_ITEMS } from "@/data/productData";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Minus, Plus } from "lucide-react";
+import { useState } from "react";
 
 export function FaqAndFooter() {
   const [openId, setOpenId] = useState<string | null>(FAQ_ITEMS[0].id);
   const prefersReduced = useReducedMotion();
+  const currentYear = new Date().getFullYear();
 
   return (
     <>
@@ -54,16 +48,16 @@ export function FaqAndFooter() {
                       aria-expanded={isOpen}
                       aria-controls={isOpen ? panelId : undefined}
                       onClick={() => setOpenId(isOpen ? null : item.id)}
-                      className="flex w-full items-start justify-between gap-4 text-left"
+                      className="group flex w-full items-start justify-between gap-4 text-left"
                     >
-                      <span className="font-display text-base font-bold text-white sm:text-lg">
+                      <span className="font-display text-base font-bold text-white transition-colors group-hover:text-emerald-400 sm:text-lg">
                         {item.question}
                       </span>
                       <span
-                        className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors ${
+                        className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
                           isOpen
                             ? "border-emerald-500/50 bg-emerald-500/15 text-emerald-400"
-                            : "border-white/10 bg-white/[0.03] text-zinc-400"
+                            : "border-white/10 bg-white/[0.03] text-zinc-400 group-hover:border-white/20 group-hover:bg-white/[0.06] group-hover:text-white"
                         }`}
                       >
                         {isOpen ? (
@@ -92,7 +86,10 @@ export function FaqAndFooter() {
                             ? { opacity: 0 }
                             : { height: 0, opacity: 0 }
                         }
-                        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{
+                          duration: 0.25,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
                         className="overflow-hidden"
                       >
                         <p className="pt-3 pr-8 text-sm leading-relaxed text-[#A1A9A4] sm:text-base">
@@ -108,87 +105,44 @@ export function FaqAndFooter() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="theme-footer border-t border-white/[0.08] bg-[#070907] py-16">
+      {/* Minimal Footer */}
+      <footer className="theme-footer relative border-t border-white/[0.08] bg-[#070907] pt-16 pb-8">
+        {/* Subtle background glow */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-0 -z-10 h-80 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/5 blur-[120px]"
+        />
+
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-12 md:grid-cols-12">
-            {/* Brand Column */}
-            <div className="md:col-span-5">
-              <a href="#top" className="inline-flex items-center gap-3">
+          {/* Centered Logo, Name, and Description */}
+          <div className="flex flex-col items-center text-center">
+            <a href="#top" className="group flex items-center gap-3">
+              <div className="overflow-hidden rounded-xl border border-white/10 transition-colors duration-300 group-hover:border-emerald-500/30">
                 <img
                   src="/brand/header-logo.webp"
                   alt="LinkSnap logo"
                   width={36}
                   height={36}
-                  className="h-9 w-9 rounded-xl border border-white/10 object-cover"
+                  className="h-9 w-9 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <span className="font-display text-lg font-bold tracking-tight text-white">
-                  LinkSnap
-                </span>
-              </a>
-              <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#A1A9A4]">
-                Turn any URL into a customizable, story-ready visual card.
-                Built with Expo, React Native, and NativeWind.
-              </p>
-            </div>
+              </div>
+              <span className="font-display text-xl font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-emerald-400">
+                LinkSnap
+              </span>
+            </a>
 
-            {/* Product Navigation */}
-            <div className="md:col-span-3">
-              <p className="font-mono text-xs font-semibold uppercase tracking-wider text-zinc-400">
-                Navigation
-              </p>
-              <ul className="mt-4 space-y-2.5 text-sm">
-                {[
-                  { label: "Features", href: "#features" },
-                  { label: "How It Works", href: "#how-it-works" },
-                  { label: "Story Gallery", href: "#gallery" },
-                  { label: "Benefits", href: "#benefits" },
-                  { label: "FAQ", href: "#faq" },
-                ].map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      className="text-zinc-400 transition-colors hover:text-white"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Verified Project & License Links */}
-            <div className="md:col-span-4">
-              <p className="font-mono text-xs font-semibold uppercase tracking-wider text-zinc-400">
-                Project &amp; Open Source
-              </p>
-              <ul className="mt-4 space-y-2.5 text-sm">
-                {[
-                  { label: "GitHub Repository", href: REPO_URL },
-                  { label: "Documentation & Setup", href: DOCS_URL },
-                  { label: "Report an Issue", href: ISSUES_URL },
-                  { label: "MIT License", href: LICENSE_URL },
-                  { label: "Created by @7kajal", href: CREATOR_URL },
-                ].map((ext) => (
-                  <li key={ext.label}>
-                    <a
-                      href={ext.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-zinc-400 transition-colors hover:text-emerald-400"
-                    >
-                      <span>{ext.label}</span>
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#A1A9A4]">
+              Transform ordinary links into beautiful, customizable story cards
+              designed for seamless sharing.
+            </p>
           </div>
 
-          <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/[0.06] pt-8 text-xs text-zinc-500 sm:flex-row sm:items-center">
-            <p>LinkSnap · Open-source project on GitHub.</p>
-            <p className="font-mono">
+          {/* Bottom Texts: Left and Right aligned */}
+          <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 sm:flex-row">
+            <p className="text-sm text-zinc-500 text-center sm:text-left">
+              &copy; {currentYear} LinkSnap. Open-source on GitHub.
+            </p>
+            <p className="font-mono text-xs tracking-wide text-zinc-600 text-center sm:text-right">
               Made for stories, built in the open
             </p>
           </div>

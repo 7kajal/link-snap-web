@@ -1,6 +1,13 @@
 const PRODUCT_IMAGE = "/media/app-product-reference.webp";
 
-export function AppProductPreview({ compact = false }: { compact?: boolean }) {
+export function AppProductPreview({
+  compact = false,
+  surfaceMode = "dark",
+}: {
+  compact?: boolean;
+  surfaceMode?: "light" | "dark";
+}) {
+  const light = surfaceMode === "light";
   return (
     <div className="flex h-full w-full items-center justify-center">
       {/* Smaller blue-grey background */}
@@ -16,7 +23,7 @@ export function AppProductPreview({ compact = false }: { compact?: boolean }) {
 
         {/* Product card */}
         <div
-          className={`relative w-full overflow-hidden rounded-[14px] border border-white/10 bg-[#111113] shadow-[0_8px_25px_rgba(0,0,0,0.3)] ${
+          className={`relative w-full overflow-hidden rounded-[14px] border shadow-[0_8px_25px_rgba(0,0,0,0.3)] ${light ? "border-black/10 bg-white" : "border-white/10 bg-[#111113]"} ${
             compact ? "mx-3 max-w-[176px] p-1.5" : "mx-3 max-w-[200px] p-2"
           }`}
         >
@@ -42,7 +49,7 @@ export function AppProductPreview({ compact = false }: { compact?: boolean }) {
             </span>
 
             <p
-              className={`mt-1 line-clamp-2 font-display font-bold leading-tight text-white ${
+              className={`mt-1 line-clamp-2 font-display font-bold leading-tight ${light ? "text-zinc-900" : "text-white"} ${
                 compact ? "text-[8px]" : "text-[10px]"
               }`}
             >
@@ -50,14 +57,14 @@ export function AppProductPreview({ compact = false }: { compact?: boolean }) {
             </p>
 
             <div
-              className={`mt-1 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 font-bold text-white ${
+              className={`mt-1 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 font-bold ${light ? "text-zinc-900" : "text-white"} ${
                 compact ? "text-[9px]" : "text-[11px]"
               }`}
             >
               <span>₹94,999.00</span>
 
               <span
-                className={`font-normal text-zinc-400 line-through ${
+                className={`font-normal line-through ${light ? "text-zinc-500" : "text-zinc-400"} ${
                   compact ? "text-[7px]" : "text-[8px]"
                 }`}
               >
@@ -79,14 +86,14 @@ export function AppProductPreview({ compact = false }: { compact?: boolean }) {
               }`}
             >
               <span className="tracking-[-0.06em] text-amber-500">★★★★</span>
-              <span className="text-zinc-300">★</span>
-              <span className="text-zinc-300">
+              <span className={light ? "text-zinc-400" : "text-zinc-300"}>★</span>
+              <span className={light ? "text-zinc-700" : "text-zinc-300"}>
                 4.4 <span className="font-normal text-zinc-500">(4K)</span>
               </span>
             </div>
 
             <p
-              className={`mt-1 text-zinc-400 ${
+              className={`mt-1 ${light ? "text-zinc-600" : "text-zinc-400"} ${
                 compact ? "text-[7px]" : "text-[8px]"
               }`}
             >

@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Marketing landing page for LinkSnap \u2014 URL to Story Engine",
+  "description": "Marketing landing page for LinkSnap — URL to Story Engine",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3000",
     "build": "tsc -b && vite build",

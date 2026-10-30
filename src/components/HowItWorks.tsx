@@ -4,6 +4,7 @@ import {
 } from "@/components/AppProductPreview";
 import { AppShareRow } from "@/components/AppShareRow";
 import { Reveal } from "@/components/MotionPrimitives";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -28,7 +29,7 @@ function StepPhone({ children }: { children: ReactNode }) {
   return (
     <div
       aria-hidden="true"
-      className="theme-exempt step-phone mb-7 relative mx-auto h-[460px] w-full max-w-[320px]"
+      className="theme-exempt step-phone mb-7 relative mx-auto h-[480px] w-full max-w-[280px]"
     >
       <div className="absolute left-0 top-0 w-full rounded-[34px] bg-gradient-to-b from-[#343b36] to-[#161b18] p-[6px] ">
         <div className="flex h-[448px] flex-col overflow-hidden rounded-[28px] bg-[#09090b] ring-1 ring-white/10">
@@ -199,6 +200,8 @@ const steps = [
 ];
 
 export function HowItWorks() {
+  const prefersReduced = useReducedMotion();
+
   return (
     <section
       id="how-it-works"
@@ -229,8 +232,20 @@ export function HowItWorks() {
                 delay={index * 0.1}
                 className="group min-w-0 px-4 pb-7 pt-8 lg:px-8 sm:last:col-span-2 sm:last:w-[calc((100%-1.25rem)/2)] sm:last:justify-self-center lg:last:col-span-1 lg:last:w-full"
               >
-                <div className="relative flex w-full max-w-[500px] items-center justify-center overflow-hidden rounded-2xl ">
-                  <StepPhone>{step.screen}</StepPhone>
+                <div className="relative flex w-full max-w-[500px] items-center justify-center rounded-2xl">
+                  <motion.div
+                    initial={prefersReduced ? false : { opacity: 0, y: 36 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{
+                      duration: 0.7,
+                      delay: index * 0.1,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="w-full"
+                  >
+                    <StepPhone>{step.screen}</StepPhone>
+                  </motion.div>
                 </div>
                 <div className=" flex items-start gap-4 sm:min-h-[105px]">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
