@@ -27,36 +27,6 @@ export function Hero() {
         <Reveal className="relative">
           <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-20">
             {/* Phone preview */}
-            <div className="relative bottom-14 md:bottom-0 order-last flex min-w-0 justify-center">
-              <motion.div
-                initial={prefersReduced ? false : { opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: prefersReduced ? 0 : 0.7,
-                  delay: prefersReduced ? 0 : 0.15,
-                  ease: [0.21, 0.47, 0.32, 0.98],
-                }}
-                className="relative w-full max-w-[240px] sm:max-w-[250px]"
-              >
-                {/* Phone glow */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -inset-8 -z-10 rounded-full bg-gradient-to-b from-emerald-500/20 via-cyan-500/5 to-transparent blur-3xl"
-                />
-
-                <div aria-hidden="true">
-                  <PhoneFrame
-                    className="!h-[420px]"
-                    compact
-                    showStudioChrome
-                    showShareRow
-                  >
-                    <AppProductPreview compact />
-                  </PhoneFrame>
-                </div>
-              </motion.div>
-            </div>
 
             {/* Hero text and buttons */}
             <div className="order-first mx-auto flex min-w-0 max-w-2xl flex-col items-center text-center md:mx-0 md:items-start md:text-left">
@@ -95,6 +65,36 @@ export function Hero() {
                   <span>Star on GitHub</span>
                 </a>
               </div>
+            </div>
+            <div className="relative pb-20 md:pb-0 order-last flex min-w-0 justify-center">
+              <motion.div
+                initial={prefersReduced ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: prefersReduced ? 0 : 0.7,
+                  delay: prefersReduced ? 0 : 0.15,
+                  ease: [0.21, 0.47, 0.32, 0.98],
+                }}
+                className="relative w-full max-w-[240px] sm:max-w-[250px]"
+              >
+                {/* Phone glow */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-8 -z-10 rounded-full bg-gradient-to-b from-emerald-500/20 via-cyan-500/5 to-transparent blur-3xl"
+                />
+
+                <div aria-hidden="true">
+                  <PhoneFrame
+                    className="!h-[420px]"
+                    compact
+                    showStudioChrome
+                    showShareRow
+                  >
+                    <AppProductPreview compact />
+                  </PhoneFrame>
+                </div>
+              </motion.div>
             </div>
           </div>
         </Reveal>
