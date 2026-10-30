@@ -1,8 +1,8 @@
-import { DownloadButton, GitHubIcon } from "@/components/DownloadButton";
+import { GitHubIcon } from "@/components/DownloadButton";
 import { Reveal } from "@/components/MotionPrimitives";
 import { REPO_URL } from "@/data/productData";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { AppProductPreview } from "./AppProductPreview";
 import { PhoneFrame } from "./PhoneFrame";
 
