@@ -23,7 +23,7 @@ export function Hero() {
 
       {/* Top accent line */}
 
-      <div className="relative mx-2 top-14  md:top-0  md:mx-8 max-w-7xl px-5 sm:px-8">
+      <div className="relative  top-14  md:top-0 max-w-7xl mx-auto px-5 sm:px-8">
         <Reveal className="relative">
           <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-20">
             {/* Phone preview */}
