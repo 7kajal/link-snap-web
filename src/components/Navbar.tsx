@@ -305,17 +305,21 @@ export function Navbar() {
           href="#top"
           className="group inline-flex items-center gap-3 rounded-xl py-1"
         >
-          <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#0F1210] shadow-sm transition-transform duration-200 group-hover:scale-[1.03]">
-            <img
-              src="/brand/header-logo.webp"
-              alt="LinkSnap logo"
-              width={36}
-              height={36}
-              className="h-full w-full object-cover"
-            />
-          </span>
-          <span className="font-display text-lg font-bold tracking-tight text-white">
-            LinkSnap
+          <img
+            src="/brand/header-logo.webp"
+            alt="LinkSnap logo"
+            width={36}
+            height={36}
+            className="h-8 w-8 rounded-sm object-contain transition-transform duration-300 group-hover:scale-110"
+          />
+
+          <span className="flex flex-col">
+            <span className="font-display text-lg font-bold leading-tight tracking-tight text-white">
+              LinkSnap
+            </span>
+            <span className="text-[10px] font-medium tracking-wide text-green-900">
+              URL to Story Engine
+            </span>
           </span>
         </a>
 

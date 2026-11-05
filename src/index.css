@@ -51,6 +51,52 @@
   }
 }
 
+/* ── Section backgrounds (dark mode) ── */
+#top {
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(16,185,129,0.06) 0%, transparent 60%),
+              #090B09;
+}
+#how-it-works {
+  background: linear-gradient(180deg, #090B09 0%, #0C0F0C 50%, #090B09 100%);
+}
+#benefits {
+  background: radial-gradient(ellipse 70% 40% at 30% 60%, rgba(6,182,212,0.04) 0%, transparent 55%),
+              #0A0D0A;
+}
+#features {
+  background: linear-gradient(180deg, #090B09 0%, #0D100D 50%, #090B09 100%);
+}
+#gallery {
+  background: #0B0E0B;
+}
+section[aria-labelledby="final-cta-heading"] {
+  background: radial-gradient(ellipse 60% 50% at 70% 30%, rgba(16,185,129,0.05) 0%, transparent 50%),
+              #090B09;
+}
+
+/* ── Section backgrounds (light mode) ── */
+html[data-theme="light"] #top {
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(16,185,129,0.07) 0%, transparent 60%),
+              #f5f8f5;
+}
+html[data-theme="light"] #how-it-works {
+  background: linear-gradient(180deg, #f5f8f5 0%, #eef4ef 50%, #f5f8f5 100%);
+}
+html[data-theme="light"] #benefits {
+  background: radial-gradient(ellipse 70% 40% at 30% 60%, rgba(6,182,212,0.05) 0%, transparent 55%),
+              #f3f7f3;
+}
+html[data-theme="light"] #features {
+  background: linear-gradient(180deg, #f5f8f5 0%, #edf3ee 50%, #f5f8f5 100%);
+}
+html[data-theme="light"] #gallery {
+  background: #eaf1eb;
+}
+html[data-theme="light"] section[aria-labelledby="final-cta-heading"] {
+  background: radial-gradient(ellipse 60% 50% at 70% 30%, rgba(16,185,129,0.06) 0%, transparent 50%),
+              #f5f8f5;
+}
+
 @layer utilities {
   .bg-editorial-grid {
     background-size: 64px 64px;

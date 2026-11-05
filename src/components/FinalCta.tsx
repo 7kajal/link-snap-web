@@ -76,16 +76,31 @@ export function FinalCta() {
                   className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-emerald-500 px-8 text-sm font-bold text-[#05110B] shadow-[0_0_32px_rgba(16,185,129,0.25)] transition-all duration-300 hover:bg-emerald-400 hover:shadow-[0_0_48px_rgba(16,185,129,0.4)] active:scale-[0.98] sm:w-auto"
                 />
 
-                {/* FIXED: Added w-full, sm:w-auto, and justify-center to the GitHub button */}
-                <a
+                <motion.a
                   href={REPO_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="final-cta-github inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.03] px-6 text-sm font-semibold text-white transition-colors duration-200 hover:border-white/25 hover:bg-white/[0.07] sm:w-auto"
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                  className="group relative isolate inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-full border border-zinc-200 bg-zinc-900/[0.06] p-px text-sm font-bold text-zinc-900 shadow-[0_8px_30px_-12px_rgba(24,24,27,0.18)] transition-all duration-300 hover:border-green-300/70 hover:bg-amber-50 hover:shadow-[0_10px_32px_-10px_rgba(245,158,11,0.25)] active:scale-[0.98] dark:border-white/10 dark:bg-white/10 dark:text-white dark:shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)] dark:hover:border-amber-300/40 dark:hover:bg-white/20 dark:hover:shadow-[0_0_36px_rgba(251,191,36,0.18)] sm:w-auto dark:[--beam-b:rgba(255,255,255,0.7)]"
                 >
-                  <GitHubIcon />
-                  <span>Star on GitHub</span>
-                </a>
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[150%] -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-safe:group-hover:animate-[spin_2.4s_linear_infinite]"
+                    style={{
+                      backgroundImage:
+                        "conic-gradient(from 0deg, transparent 0deg, var(--beam-a) 70deg, var(--beam-b) 110deg, transparent 160deg, transparent 360deg)",
+                    }}
+                  />
+
+                  <span className="relative z-10 flex h-full w-full items-center justify-center gap-2 rounded-full bg-white px-6 text-zinc-900 transition-colors duration-300 group-hover:bg-amber-50 dark:bg-[#0B1A13] dark:text-white dark:group-hover:bg-[#0E2017]">
+                    <span className="flex text-zinc-700 transition-all duration-300 group-hover:-rotate-12 group-hover:scale-110  dark:text-zinc-100 dark:group-hover:text-green-300">
+                      <GitHubIcon />
+                    </span>
+                    <span>Star on GitHub</span>
+                  </span>
+                </motion.a>
               </div>
             </motion.div>
 

@@ -3,6 +3,7 @@ import { FAQ_ITEMS } from "@/data/productData";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
+import { GitHubIcon } from "./DownloadButton";
 
 export function FaqAndFooter() {
   const [openId, setOpenId] = useState<string | null>(FAQ_ITEMS[0].id);
@@ -104,47 +105,89 @@ export function FaqAndFooter() {
           </div>
         </div>
       </section>
-
-      {/* Minimal Footer */}
-      <footer className="theme-footer relative border-t border-white/[0.08] bg-[#070907] pt-16 pb-8">
-        {/* Subtle background glow */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-0 -z-10 h-80 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/5 blur-[120px]"
-        />
-
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          {/* Centered Logo, Name, and Description */}
-          <div className="flex flex-col items-center text-center">
+      <footer className="border-t border-slate-200 bg-white py-10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-5 sm:flex-row sm:px-8">
+          <div className="flex flex-col items-center gap-1.5 sm:items-start">
             <a href="#top" className="group flex items-center gap-3">
-              <div className="overflow-hidden rounded-xl border border-white/10 transition-colors duration-300 group-hover:border-emerald-500/30">
-                <img
-                  src="/brand/header-logo.webp"
-                  alt="LinkSnap logo"
-                  width={36}
-                  height={36}
-                  className="h-9 w-9 object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-              </div>
-              <span className="font-display text-xl font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-emerald-400">
-                LinkSnap
+              <img
+                src="/brand/header-logo.webp"
+                alt="LinkSnap logo"
+                width={36}
+                height={36}
+                className="h-8 w-8 rounded-sm object-contain transition-transform duration-300 group-hover:scale-110"
+              />
+
+              <span className="flex flex-col">
+                <span className="font-display text-lg font-bold leading-tight tracking-tight text-white">
+                  LinkSnap
+                </span>
+                <span className="text-[10px] font-medium tracking-wide text-green-900">
+                  URL to Story Engine
+                </span>
               </span>
             </a>
 
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#A1A9A4]">
-              Transform ordinary links into beautiful, customizable story cards
-              designed for seamless sharing.
+            <p className="text-center text-xs text-slate-700 sm:text-left">
+              &copy; {currentYear}{" "}
+              <a
+                href="https://github.com/7kajal/"
+                className="underline underline-offset-2 hover:text-emerald-600"
+              >
+                Kajal Yadav{" "}
+              </a>
+              . All Rights Reserved.{" "}
             </p>
           </div>
 
-          {/* Bottom Texts: Left and Right aligned */}
-          <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 sm:flex-row">
-            <p className="text-sm text-zinc-500 text-center sm:text-left">
-              &copy; {currentYear} LinkSnap. Open-source on GitHub.
-            </p>
-            <p className="font-mono text-xs tracking-wide text-zinc-600 text-center sm:text-right">
-              Made for stories, built in the open
-            </p>
+          {/* Social Links */}
+          <div className="flex items-center gap-3">
+            {[
+              {
+                label: "GitHub",
+                href: "https://github.com/7kajal/link-snap",
+                icon: <GitHubIcon />,
+              },
+              {
+                label: "LinkedIn",
+                href: "https://www.linkedin.com/in/ksy03/",
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="h-3.5 w-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124ZM7.119 20.452H3.555V9h3.564v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z" />
+                  </svg>
+                ),
+              },
+
+              // {
+              //   label: "X",
+              //   href: "#",
+              //   icon: (
+              //     <svg
+              //       viewBox="0 0 24 24"
+              //       fill="currentColor"
+              //       className="h-5 w-5"
+              //       aria-hidden="true"
+              //     >
+              //       <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l7.3-8.4L1.8 2h6.5l4.5 6.8L18.9 2Zm-1.1 18h1.7L7.2 3.9H5.4L17.8 20Z" />
+              //     </svg>
+              //   ),
+              // },
+            ].map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                aria-label={social.label}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-slate-700 transition-all duration-200 hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-600"
+              >
+                {social.icon}
+              </a>
+            ))}
           </div>
         </div>
       </footer>

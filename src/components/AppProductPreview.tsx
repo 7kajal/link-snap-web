@@ -1,13 +1,30 @@
+import { useEffect, useState } from "react";
+
 const PRODUCT_IMAGE = "/media/app-product-reference.webp";
+
+function useSiteTheme() {
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    return (document.documentElement.dataset.theme as "dark" | "light") || "dark";
+  });
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setTheme((document.documentElement.dataset.theme as "dark" | "light") || "dark");
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
+  }, []);
+  return theme;
+}
 
 export function AppProductPreview({
   compact = false,
-  surfaceMode = "dark",
+  surfaceMode = "auto",
 }: {
   compact?: boolean;
-  surfaceMode?: "light" | "dark";
+  surfaceMode?: "light" | "dark" | "auto";
 }) {
-  const light = surfaceMode === "light";
+  const siteTheme = useSiteTheme();
+  const light = surfaceMode === "auto" ? siteTheme === "light" : surfaceMode === "light";
   return (
     <div className="flex h-full w-full items-center justify-center">
       {/* Smaller blue-grey background */}
